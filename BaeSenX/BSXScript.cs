@@ -123,51 +123,52 @@ namespace BaeSenX
             return List;
         }
 
-        //In order to obtain all of the information, we have to analyze the header, which includes the offsets and sizes
-        //of each array of information the file contains. For the most part, it tends to be offered in the following order:
-        //Signature (20 bytes) + ??? (24 bytes) + Opcodes (8 bytes) + ???? (4 bytes) + List of functions (16 bytes) +
-        //1st list of variables (16 bytes) + 2rd list of variables (16 bytes) + 3th list of variables (16 bytes) + 4th list
-        //of variables (16 bytes) + Character's list (16 bytes) + Messages' list (16 bytes) + ??? (Unknown bytes)
+
+        /// <summary>
+        /// Converts the compiled script into a list of instructions that can be more easily analyzed.
+        /// </summary>
+        /// <returns>List of Instructions that is based on the opcodes section of the script, filled
+        /// with the metadata obtained from the other sections.</returns>
         public List<Instruction> Decompile()
         {
             //From the magic signature there is nothing to obtain besides the version, so we skip those 20 bytes
 
+            //First we obtain the opcodes array
             byte[] OpcodesArray = GetRawList(0)[1];
 
+            //The next section is the one with the functions/labels
             byte[] MetadataFunctionsArray = GetRawList(1)[0];
             byte[] FunctionsArray = GetRawList(1)[1];
-
             var (_, _, _, _, FunctionsMetadataBytesToShift) = HeaderParameters[1];
 
             FunctionList = DecompilerHelper.GetFunctions(MetadataFunctionsArray, 
                 FunctionsArray, FunctionsMetadataBytesToShift);
 
+
             //Now we obtain the variables from each of the lists with variables
             for (int CurrentList = 0; CurrentList < VariableList.Count; CurrentList++)
             {
-                var (_, _, _, _, VariablesMetadataBytesToShift) = HeaderParameters[CurrentList + 2];
-
                 byte[] MetadataVariablesArray = GetRawList(CurrentList + 2)[0];
                 byte[] VariablesArray = GetRawList(CurrentList + 2)[1];
+                var (_, _, _, _, VariablesMetadataBytesToShift) = HeaderParameters[CurrentList + 2];
 
                 VariableList[CurrentList] = DecompilerHelper.GetListVariables(MetadataVariablesArray, 
                     VariablesArray, VariablesMetadataBytesToShift);
             }
 
 
-            var (_, _, _, _, CharactersMetadataBytesToShift) = HeaderParameters[HeaderParameters.Length - 2];
-
+            //Next, we have the character's names
             byte[] MetadataCharactersArray = GetRawList(HeaderParameters.Length - 2)[0];
             byte[] CharactersArray = GetRawList(HeaderParameters.Length - 2)[1];
+            var (_, _, _, _, CharactersMetadataBytesToShift) = HeaderParameters[HeaderParameters.Length - 2];
 
             CharacterList = DecompilerHelper.GetListVariables(MetadataCharactersArray, 
                 CharactersArray, CharactersMetadataBytesToShift);
 
-
-            var (_, _, _, _, MessagesMetadataBytesToShift) = HeaderParameters[HeaderParameters.Length - 1];
-
+            //The final list contains the messages all of the characters say during the game
             byte[] MetadataMessagesArray = GetRawList(HeaderParameters.Length - 1)[0];
             byte[] MessagesArray = GetRawList(HeaderParameters.Length - 1)[1];
+            var (_, _, _, _, MessagesMetadataBytesToShift) = HeaderParameters[HeaderParameters.Length - 1];
 
             MessageList = DecompilerHelper.GetListVariables(MetadataMessagesArray,
                 MessagesArray, MessagesMetadataBytesToShift);
