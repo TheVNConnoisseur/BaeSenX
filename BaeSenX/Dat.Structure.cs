@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BaeSenX
+{
+    public class Instruction
+    {
+        public string Type { get; set; }
+        public List<string> Arguments { get; set; }
+
+        public Instruction()
+        {
+            Arguments = new List<string>();
+        }
+    }
+}

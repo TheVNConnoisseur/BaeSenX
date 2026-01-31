@@ -1,0 +1,21 @@
+﻿<Window x:Class="BaeSenX.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BaeSenX"
+        mc:Ignorable="d"
+        Title="BaeSenX" Height="239" Width="405" ResizeMode="CanMinimize" WindowStyle="ThreeDBorderWindow">
+    <Canvas Margin="0,0,0,-6" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Button x:Name="Button_Original_File" RenderTransformOrigin="0.939,0.635" Height="32" Canvas.Left="-43" Canvas.Top="-32" Width="94" Content="Select file" Click="Button_Original_File_Click" HorizontalAlignment="Center" VerticalAlignment="Top" IsEnabled="False"/>
+        <Button x:Name="Button_Convert" Content="Convert" Canvas.Left="-43" Canvas.Top="31" RenderTransformOrigin="0.127,0.129" IsEnabled="False" Height="37" Width="94" Click="Button_Convert_Click" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBox_OptionSelector" Canvas.Left="-94" Canvas.Top="-80" Width="196" VerticalAlignment="Center" HorizontalAlignment="Left" SelectionChanged="ComboBox_OptionSelector_SelectionChanged">
+            <ComboBoxItem Content="Savegame" IsEnabled="False"/>
+            <ComboBoxItem Content="Recalculate hash"/>
+            <Separator/>
+            <ComboBoxItem Content="Script" IsEnabled="False"/>
+            <ComboBoxItem Content="Decompile"/>
+            <ComboBoxItem Content="Recompile"/>
+        </ComboBox>
+    </Canvas>
+</Window>

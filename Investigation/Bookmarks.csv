@@ -1,0 +1,46 @@
+Name,Value,Start,Size,Type,Color
+Signature[16],BSXScript 3.2,0h,10h,char,Fg: Bg:0x00FFFF
+OffsetOpcodes[4],,2Ch,4h,char,Fg: Bg:0x00FF00
+SizeOpcodes[4],,30h,4h,char,Fg: Bg:0x00FF00
+OffsetListVariablesOffset1,1520384,38h,4h,int,Fg: Bg:0x0000BF
+SizeListVariablesOffset1,18776,3Ch,4h,int,Fg: Bg:0x0000BF
+OffsetListVariables1,1539168,40h,4h,int,Fg: Bg:0x0000BF
+SizeListVariables1,69832,44h,4h,int,Fg: Bg:0x0000BF
+OffsetListVariablesOffset2,1609008,48h,4h,int,Fg: Bg:0x007F00
+SizeListVariablesOffset2,67564,4Ch,4h,int,Fg: Bg:0x007F00
+OffsetListVariables2,1676576,50h,4h,int,Fg: Bg:0x007F00
+SizeListVariables2,445444,54h,4h,int,Fg: Bg:0x007F00
+OffsetListVariablesOffset3,2122032,58h,4h,int,Fg: Bg:0x7F0000
+SizeListVariablesOffset3,4,5Ch,4h,int,Fg: Bg:0x7F0000
+OffsetListVariables3[4],@a ,60h,4h,char,Fg: Bg:0x7F0000
+SizeListVariables3[4],,64h,4h,char,Fg: Bg:0x7F0000
+OffsetListVariablesOffset4[4],`a ,68h,4h,char,Fg: Bg:0x8000FF
+SizeListVariablesOffset4[4],ü,6Ch,4h,char,Fg: Bg:0x8000FF
+OffsetListVariables4[4],`b ,70h,4h,char,Fg: Bg:0x8000FF
+SizeListVariables4[4],‚,74h,4h,char,Fg: Bg:0x8000FF
+OffsetListVariablesOffset5[4],ðh ,78h,4h,char,Fg: Bg:0x00FFFF
+SizeListVariablesOffset5[4],,7Ch,4h,char,Fg: Bg:0x00FFFF
+OffsetListVariables5[4],ðh ,80h,4h,char,Fg: Bg:0x00FFFF
+SizeListVariables5[4],,84h,4h,char,Fg: Bg:0x00FFFF
+OffsetListCharactersOffset[4],ðh ,88h,4h,char,Fg: Bg:0x818181
+SizeListCharactersOffset[4],Ø,8Ch,4h,char,Fg: Bg:0x818181
+OffsetCharactersList[4],Ði ,90h,4h,char,Fg: Bg:0x818181
+SizeCharactersList[4],\,94h,4h,char,Fg: Bg:0x818181
+OffsetListMessagesOffset[4],0l ,98h,4h,char,Fg: Bg:0x9999FF
+SizeListMessagesOffset[4],ˆù,9Ch,4h,char,Fg: Bg:0x9999FF
+OffsetMessages[4],Àe",A0h,4h,char,Fg: Bg:0x9999FF
+SizeMessages[4],2,A4h,4h,char,Fg: Bg:0x9999FF
+????[80],,A8h,50h,char,Fg: Bg:0x33FF33
+Opcodes[1520128],,100h,173200h,char,Fg: Bg:0x0000FF
+OffsetsListVariables1[18776],,173300h,4958h,char,Fg: Bg:0x00007F
+ListVariables1[69832],,177C60h,110C8h,char,Fg: Bg:0x00007F
+OffsetListVariables2[67564],,188D30h,107ECh,char,Fg: Bg:0x007F00
+ListVariables2[445444],,199520h,6CC04h,char,Fg: Bg:0x007F00
+OffsetListVariables3[16],,206130h,10h,char,Fg: Bg:0x7F0000
+ListVariables3[28],@,206140h,1Ch,char,Fg: Bg:0x7F0000
+OffsetListVariables4[252],,206160h,FCh,char,Fg: Bg:0x8000FF
+ListVariables4[1666],,206260h,682h,char,Fg: Bg:0x8000FF
+OffsetListCharacters[216],,2068F0h,D8h,char,Fg: Bg:0x818181
+Characters[604],ÿÿÿ,2069D0h,25Ch,char,Fg: Bg:0x818181
+OffsetListMessages[129416],,206C30h,1F988h,char,Fg: Bg:0x9999FF
+Messages[3283468],,2265C0h,321A0Ch,char,Fg: Bg:0x9999FF
