@@ -105,6 +105,8 @@ namespace BaeSenX
                 {
                     switch (ComboBox_OptionSelector.SelectedIndex)
                     {
+                        //When trying to update the checksum of a save file, it needs to first load the script file associated
+                        //to the game. Then, it will recalculate the checksum based on the compiled opcodes of the script.
                         case 1:
                             OpenFileDialog ofd = new OpenFileDialog();
                             ofd.FileName = "bsxx.dat";
@@ -118,7 +120,10 @@ namespace BaeSenX
                             {
                                 try
                                 {
-                                    
+                                    BSXScript ScriptToReference = new BSXScript(File.ReadAllBytes(ofd.FileName));
+                                    Save SaveToEdit = new Save(File.ReadAllBytes(FilePath));
+                                    SaveToEdit.SetUpdatedChecksum(ScriptToReference.GetRawList(0));
+                                    File.WriteAllBytes(Path.GetFullPath(sfd.FileName), SaveToEdit.GetCompiledSave());
                                 }
                                 catch (Exception ex)
                                 {
@@ -127,9 +132,9 @@ namespace BaeSenX
                             }
                             break;
                         case 4:
-                            BSXScript BSXScriptObject = new BSXScript(File.ReadAllBytes(FilePath));
+                            BSXScript ScriptObject = new BSXScript(File.ReadAllBytes(FilePath));
                             var options = new JsonSerializerOptions { WriteIndented = true, Encoder = JavaScriptEncoder.Create(UnicodeRanges.All) };
-                            string json = JsonSerializer.Serialize(BSXScriptObject.Decompile(), options);
+                            string json = JsonSerializer.Serialize(ScriptObject.Decompile(), options);
                             File.WriteAllText(Path.GetFullPath(sfd.FileName), json);
                             break;
                         case 5:

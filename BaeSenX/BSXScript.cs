@@ -36,7 +36,7 @@ namespace BaeSenX
             byte[] MagicSignature = new byte[20]; //While the magic signature is 13 technically bytes, the game reserves 20 bytes for it
             Buffer.BlockCopy(CompiledScript, 0, MagicSignature, 0, 20);
 
-            Version = SetVersion(MagicSignature);
+            Version = GetVersion(MagicSignature);
 
             //Depending on the version, some things may vary, although at this moment that's not the case
             switch (Version)
@@ -68,7 +68,7 @@ namespace BaeSenX
         /// Said header is expected to be 20 bytes long and contain the version information in ASCII format.
         /// </summary>
         /// <returns>Float with version number</returns>
-        public static float SetVersion(byte[] MagicSignature)
+        public static float GetVersion(byte[] MagicSignature)
         {
             if (MagicSignature.SequenceEqual(Encoding.ASCII.GetBytes("BSXScript 3.0\x00\x00\x00\x00\x04\x00\x00")))
                 return 3.0f;
@@ -131,8 +131,6 @@ namespace BaeSenX
         /// with the metadata obtained from the other sections.</returns>
         public List<Instruction> Decompile()
         {
-            //From the magic signature there is nothing to obtain besides the version, so we skip those 20 bytes
-
             //First we obtain the opcodes array
             byte[] OpcodesArray = GetRawList(0)[1];
 
