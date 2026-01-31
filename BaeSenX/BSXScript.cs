@@ -33,8 +33,8 @@ namespace BaeSenX
         public BSXScript(byte[] OriginalFile)
         {
             CompiledScript = OriginalFile;
-            byte[] MagicSignature = new byte[20]; //While the magic signature is 13 technically bytes, the game reserves 20 bytes for it
-            Buffer.BlockCopy(CompiledScript, 0, MagicSignature, 0, 20);
+            byte[] MagicSignature = new byte[16]; //While the magic signature is 13 technically bytes, the game reserves 16 bytes for it for alignment purposes
+            Buffer.BlockCopy(CompiledScript, 0, MagicSignature, 0, 16);
 
             Version = GetVersion(MagicSignature);
 
@@ -65,18 +65,18 @@ namespace BaeSenX
 
         /// <summary>
         /// Takes a byte array representing the header of a BSXScript file and returns the version number.
-        /// Said header is expected to be 20 bytes long and contain the version information in ASCII format.
+        /// Said header is expected to be 16 bytes long and contain the version information in ASCII format.
         /// </summary>
         /// <returns>Float with version number</returns>
         public static float GetVersion(byte[] MagicSignature)
         {
-            if (MagicSignature.SequenceEqual(Encoding.ASCII.GetBytes("BSXScript 3.0\x00\x00\x00\x00\x04\x00\x00")))
+            if (MagicSignature.SequenceEqual(Encoding.ASCII.GetBytes("BSXScript 3.0\x00\x00\x00")))
                 return 3.0f;
-            if (MagicSignature.SequenceEqual(Encoding.ASCII.GetBytes("BSXScript 3.1\x00\x00\x00\x00\x04\x00\x00")))
+            if (MagicSignature.SequenceEqual(Encoding.ASCII.GetBytes("BSXScript 3.1\x00\x00\x00")))
                 return 3.1f;
-            if (MagicSignature.SequenceEqual(Encoding.ASCII.GetBytes("BSXScript 3.2\x00\x00\x00\x00\x04\x00\x00")))
+            if (MagicSignature.SequenceEqual(Encoding.ASCII.GetBytes("BSXScript 3.2\x00\x00\x00")))
                 return 3.2f;
-            if (MagicSignature.SequenceEqual(Encoding.ASCII.GetBytes("BSXScript 3.3\x00\x00\x00\x00\x04\x00\x00")))
+            if (MagicSignature.SequenceEqual(Encoding.ASCII.GetBytes("BSXScript 3.3\x00\x00\x00")))
                 return 3.3f;
 
             throw new ArgumentException("Malformated header, no valid version has been detected.");

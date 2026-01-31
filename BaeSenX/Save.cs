@@ -54,7 +54,5 @@ namespace BaeSenX
                 Buffer.BlockCopy(ChecksumArray, 0, CompiledSave, 0, 32);
             }
         }
-
-
     }
 }
