@@ -33,7 +33,7 @@ namespace BaeSenX
         public BSXScript(byte[] OriginalFile)
         {
             CompiledScript = OriginalFile;
-            byte[] MagicSignature = new byte[16]; //While the magic signature is 13 technically bytes, the game reserves 16 bytes for it for alignment purposes
+            byte[] MagicSignature = new byte[16]; //While the magic signature is technically 13 bytes, the game reserves 16 bytes for it for alignment purposes
             Buffer.BlockCopy(CompiledScript, 0, MagicSignature, 0, 16);
 
             Version = GetVersion(MagicSignature);
