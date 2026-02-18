@@ -21,4 +21,3 @@ Keep in mind that their script pretty much deals with really low-level stuff, so
 
 #### ❔ How is the game file structured?
 ℹ️ The game is divided into 3 sections: Magic signature, the opcodes and sizes for each of its lists, and each list itself.
-[WIP explanation]
